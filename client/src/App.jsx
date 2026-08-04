@@ -78,8 +78,8 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const isNative = typeof window !== 'undefined' && window.Capacitor && window.Capacitor.isNative;
-      const API_URL = isNative ? 'https://airesumaker.vercel.app/api/generate' : '/api/generate';
+      const isNativeApp = window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && window.location.port === '');
+      const API_URL = isNativeApp ? 'https://airesumaker.vercel.app/api/generate' : '/api/generate';
 
       const res = await fetch(API_URL, {
         method: 'POST',
