@@ -45,6 +45,40 @@ const WIZARD_STEPS = [
 export default function Wizard({ onComplete, disabled }) {
   const [stepIndex, setStepIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [rateLimitMessage, setRateLimitMessage] = useState(null);
+
+  React.useEffect(() => {
+    const DAILY_LIMIT = 2;
+    const today = new Date().toISOString().slice(0, 10);
+    const rateLimitData = JSON.parse(localStorage.getItem('resumaker_rate_limit') || '{}');
+    
+    if (rateLimitData.date === today && rateLimitData.count >= DAILY_LIMIT) {
+      const now = new Date();
+      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      const diffMs = tomorrow - now;
+      const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      
+      let waitTimeStr = "";
+      if (diffHrs > 0) {
+        waitTimeStr = `${diffHrs} hour${diffHrs !== 1 ? 's' : ''} and ${diffMins} minute${diffMins !== 1 ? 's' : ''}`;
+      } else {
+        waitTimeStr = `${diffMins} minute${diffMins !== 1 ? 's' : ''}`;
+      }
+
+      setRateLimitMessage(`Meow! You've used up your ${DAILY_LIMIT} AI generations for today. Please wait ${waitTimeStr} until I'm fully recharged!`);
+    }
+  }, []);
+
+  if (rateLimitMessage) {
+    return (
+      <div className="wizard-container">
+        <TalkingMascot text={rateLimitMessage}>
+          {/* Empty body since they just need to read the message */}
+        </TalkingMascot>
+      </div>
+    );
+  }
 
   const currentStep = WIZARD_STEPS[stepIndex];
 
