@@ -1,3 +1,13 @@
+// In-memory rate limit store (resets on cold starts, but provides server-side protection)
+const rateLimitMap = new Map();
+const DAILY_LIMIT = 2;
+
+function getRateLimitKey(req) {
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.headers['x-real-ip'] || 'unknown';
+  const today = new Date().toISOString().slice(0, 10);
+  return `${ip}_${today}`;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,6 +21,13 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  // Server-side rate limiting
+  const rateLimitKey = getRateLimitKey(req);
+  const currentCount = rateLimitMap.get(rateLimitKey) || 0;
+  if (currentCount >= DAILY_LIMIT) {
+    return res.status(429).json({ error: `Daily limit reached (${DAILY_LIMIT} resumes/day). Please try again tomorrow!` });
   }
 
   const { prompt } = req.body;
@@ -72,6 +89,9 @@ Only output the raw JSON object. Do not include markdown formatting like \`\`\`j
       } catch (e) {
         return res.status(500).json({ error: 'Failed to parse JSON from AI', raw: textResponse });
       }
+
+      // Increment rate limit on success
+      rateLimitMap.set(rateLimitKey, currentCount + 1);
 
       return res.status(200).json(parsedData);
 

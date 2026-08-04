@@ -75,6 +75,20 @@ function App() {
 
   const handleGenerate = async (compiledPrompt) => {
     if (!compiledPrompt || isOffline) return;
+
+    // Client-side rate limit: 2 generations per day
+    const DAILY_LIMIT = 2;
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const rateLimitData = JSON.parse(localStorage.getItem('resumaker_rate_limit') || '{}');
+    if (rateLimitData.date !== today) {
+      rateLimitData.date = today;
+      rateLimitData.count = 0;
+    }
+    if (rateLimitData.count >= DAILY_LIMIT) {
+      setError(`Daily limit reached (${DAILY_LIMIT} resumes/day). Please try again tomorrow!`);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
@@ -90,6 +104,10 @@ function App() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to generate');
       
+      // Increment rate limit count on success
+      rateLimitData.count += 1;
+      localStorage.setItem('resumaker_rate_limit', JSON.stringify(rateLimitData));
+
       const newId = Date.now().toString();
       const processedData = { ...data, _id: newId };
       setResumeData(processedData);
