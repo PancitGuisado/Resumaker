@@ -210,29 +210,44 @@
   }
   
   .install-mockups-section {
-    height: 400px;
+    height: auto;
     width: 100%;
-    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
   }
   
   .mockup-wrapper {
-    width: 220px;
+    position: static;
+    width: 200px;
+    transform: none;
   }
-  
+
   .mockup-left {
-    left: 5%;
+    left: auto;
+    top: auto;
+    transform: rotate(-3deg);
   }
   
   .mockup-right {
-    right: 5%;
+    left: auto;
+    top: auto;
+    transform: rotate(3deg);
+  }
+
+  .mockup-left:hover {
+    transform: rotate(-1deg) scale(1.02);
+  }
+
+  .mockup-right:hover {
+    transform: rotate(1deg) scale(1.02);
   }
 }
 
 @media (max-width: 480px) {
-  .install-mockups-section {
-    height: 350px;
-    margin-top: 5rem;
-  }
-  .mockup-wrapper { width: 170px; }
+  .mockup-wrapper { width: 150px; }
   .install-title { font-size: 2.5rem; }
 }
+
