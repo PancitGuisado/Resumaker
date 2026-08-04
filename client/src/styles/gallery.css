@@ -1,0 +1,88 @@
+.gallery-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gallery-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.gallery-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+
+.gallery-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.template-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: popIn 0.5s ease-out backwards;
+}
+
+.gallery-grid .template-card:nth-child(1) { animation-delay: 0.1s; }
+.gallery-grid .template-card:nth-child(2) { animation-delay: 0.2s; }
+.gallery-grid .template-card:nth-child(3) { animation-delay: 0.3s; }
+.gallery-grid .template-card:nth-child(4) { animation-delay: 0.4s; }
+.gallery-grid .template-card:nth-child(5) { animation-delay: 0.5s; }
+
+.template-card:hover {
+  transform: translateY(-8px);
+  border-color: #3b82f6;
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.15);
+}
+
+.template-card-preview-wrapper {
+  width: 100%;
+  height: 350px;
+  background: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.template-card-preview {
+  /* Scale down the 800px resume template to fit inside the 300px card */
+  transform: scale(0.35);
+  transform-origin: top center;
+  width: 210mm; /* A4 width */
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.template-card-info {
+  padding: 1.5rem;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+}
+
+.template-card-info h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin: 0;
+}

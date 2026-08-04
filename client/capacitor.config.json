@@ -1,0 +1,6 @@
+{
+  "appId": "com.resumaker.app",
+  "appName": "Resumaker",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

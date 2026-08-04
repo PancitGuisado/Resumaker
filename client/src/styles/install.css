@@ -1,0 +1,234 @@
+.install-container {
+  min-height: 100vh;
+  background-color: #0f172a; /* Dark sleek theme for the showcase */
+  color: white;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.install-container .back-icon-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.install-container .back-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-3px);
+}
+
+.install-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin: 0 auto;
+}
+
+.install-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: fadeSlideRight 0.8s ease-out;
+}
+
+@keyframes fadeSlideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.install-badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.install-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.install-description {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+}
+
+.install-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-item strong {
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin-bottom: 0.25rem;
+}
+
+.feature-item span {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.download-apk-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s;
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+}
+
+.download-apk-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px -5px rgba(37, 99, 235, 0.5);
+}
+
+.install-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.install-mockups-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 600px;
+  animation: fadeSlideLeft 0.8s ease-out 0.2s backwards;
+}
+
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.mockup-wrapper {
+  position: absolute;
+  width: 300px;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 8px solid #1e293b;
+  background: #1e293b;
+}
+
+.mockup-left {
+  left: 0;
+  transform: scale(0.9) rotate(-5deg);
+  z-index: 1;
+  transition: transform 0.4s;
+}
+
+.mockup-right {
+  right: 0;
+  transform: scale(1) rotate(5deg) translateY(20px);
+  z-index: 2;
+  transition: transform 0.4s;
+}
+
+.mockup-left:hover {
+  transform: scale(0.95) rotate(-2deg);
+  z-index: 3;
+}
+
+.mockup-right:hover {
+  transform: scale(1.05) rotate(2deg) translateY(20px);
+}
+
+.mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 32px;
+}
+
+/* Mobile Responsiveness for Install Page */
+@media (max-width: 968px) {
+  .install-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .install-text-section {
+    align-items: center;
+  }
+  
+  .install-title {
+    font-size: 3rem;
+  }
+  
+  .install-mockups-section {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .mockup-wrapper {
+    width: 220px;
+  }
+  
+  .mockup-left {
+    left: 10%;
+  }
+  
+  .mockup-right {
+    right: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .install-mockups-section {
+    height: 350px;
+  }
+  .mockup-wrapper { width: 180px; }
+  .install-title { font-size: 2.5rem; }
+}

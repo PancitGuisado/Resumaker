@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+/* Wizard Overlay (Game Dialogue Style) */
+.wizard-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 2rem;
+}
+
+.wizard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.wizard-progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.wizard-progress-fill {
+  height: 100%;
+  background-color: #3b82f6; /* Modern Blue */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wizard-step-indicator {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Mascot Styles (Large Game Style) */
+.game-dialogue-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.game-mascot-avatar {
+  width: 200px;
+  height: 200px;
+  z-index: 10;
+  margin-bottom: -40px; /* Overlap dialogue box */
+  position: relative;
+}
+
+.game-mascot-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.8));
+}
+
+.game-dialogue-box {
+  background: #f8fafc;
+  width: 100%;
+  border: 6px solid #1e293b;
+  border-radius: 12px;
+  padding: 3.5rem 2rem 2rem;
+  position: relative;
+  box-shadow: 12px 12px 0px rgba(0,0,0,0.3);
+}
+
+.game-name-tag {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  background: white;
+  border: 4px solid #1e293b;
+  padding: 0.5rem 1.5rem;
+  font-weight: 800;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  color: #1e293b;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 1px;
+}
+
+.game-dialogue-text {
+  font-family: 'VT323', monospace; /* Retro pixel font */
+  font-size: 2rem;
+  color: #1e293b;
+  min-height: 80px;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 12px;
+  height: 1.1em;
+  background-color: #1e293b;
+  vertical-align: text-bottom;
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Wizard Inputs */
+.wizard-input-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.wizard-input, .wizard-textarea {
+  width: 100%;
+  background-color: #ffffff;
+  border: 4px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  color: #0f172a;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  transition: all 0.2s ease;
+  box-shadow: inset 4px 4px 0px rgba(0,0,0,0.05);
+}
+
+.wizard-input:focus, .wizard-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.wizard-textarea {
+  resize: vertical;
+}
+
+/* Retro Buttons */
+.wizard-controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.btn-retro {
+  border: 4px solid #1e293b;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+}
+
+.btn-retro:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0px #1e293b;
+}
+
+.btn-retro:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-retro-primary {
+  flex: 2;
+  background-color: #3b82f6;
+  color: white;
+  box-shadow: 4px 4px 0px #1e293b;
+}
+
+.btn-retro-secondary {
+  flex: 1;
+  background-color: #f1f5f9;
+  color: #1e293b;
+  box-shadow: 4px 4px 0px #1e293b;
+}
+
+/* Loader in Overlay */
+.wizard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: white;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+}
+.wizard-loading h2 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+.wizard-loading p {
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
