@@ -122,8 +122,12 @@ function App() {
     setCurrentView('gallery');
   };
 
-  const handleUpdateData = (newData) => {
-    setResumeData(newData);
+  const handleUpdateData = (pathOrData, value) => {
+    if (typeof pathOrData === 'string') {
+      setResumeData(prev => setNestedObjectProperty(prev, pathOrData, value));
+    } else {
+      setResumeData(pathOrData);
+    }
   };
 
   if (showSplash) {
