@@ -31,16 +31,18 @@ export default function Home({ onStartCreate, onViewSaved, onInstallApp }) {
         </div>
       </div>
 
-      <div style={{ marginTop: '4rem', animation: 'fadeInUp 0.6s ease-out 0.2s backwards' }}>
-        <button 
-          onClick={onInstallApp}
-          className="choice-card" 
-          style={{ padding: '1rem 2rem', display: 'flex', alignItems: 'center', gap: '1rem', background: '#1e293b', color: 'white', borderRadius: '50px' }}
-        >
-          <Smartphone size={24} color="#60a5fa" />
-          <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>Get the Mobile App</span>
-        </button>
-      </div>
+      {!(window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && window.location.port === '')) && (
+        <div style={{ marginTop: '4rem', animation: 'fadeInUp 0.6s ease-out 0.2s backwards' }}>
+          <button 
+            onClick={onInstallApp}
+            className="choice-card" 
+            style={{ padding: '1rem 2rem', display: 'flex', alignItems: 'center', gap: '1rem', background: '#1e293b', color: 'white', borderRadius: '50px' }}
+          >
+            <Smartphone size={24} color="#60a5fa" />
+            <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>Get the Mobile App</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

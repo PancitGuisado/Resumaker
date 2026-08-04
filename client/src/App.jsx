@@ -171,7 +171,7 @@ function App() {
         )}
 
         {currentView === 'wizard' && (
-          <div className="wizard-overlay" style={{ position: 'relative' }}>
+          <div className="wizard-overlay" style={{ position: 'relative', minHeight: '100vh' }}>
             <button 
               onClick={() => setCurrentView('home')}
               className="back-icon-btn"
@@ -181,10 +181,10 @@ function App() {
               <ArrowLeft size={28} />
             </button>
             {loading && (
-              <div className="wizard-loading" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, background: '#0f172a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="wizard-loading" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, background: '#0f172a', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '2rem', textAlign: 'center' }}>
                 <Loader2 className="spinner" size={64} color="white" />
-                <h2>Generating your masterpiece...</h2>
-                <p>Our AI is formatting your resume perfectly. This takes just a few seconds.</p>
+                <h2 style={{ color: 'white', margin: 0, fontFamily: 'Outfit, sans-serif' }}>Generating your masterpiece...</h2>
+                <p style={{ color: '#94a3b8', margin: 0 }}>Our AI is formatting your resume perfectly. This takes just a few seconds.</p>
               </div>
             )}
             <div style={{ display: loading ? 'none' : 'block', width: '100%', height: '100%' }}>
@@ -218,12 +218,12 @@ function App() {
             <button 
               onClick={() => setCurrentView('home')}
               className="back-icon-btn"
-              style={{ position: 'absolute', top: '2rem', left: '2rem', background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem', borderRadius: '50%', transition: 'all 0.2s' }}
+              style={{ position: 'absolute', top: '2rem', left: '1rem', background: 'transparent', border: 'none', cursor: 'pointer', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.5rem', borderRadius: '50%', transition: 'all 0.2s', zIndex: 10 }}
               title="Back to Home"
             >
               <ArrowLeft size={28} />
             </button>
-            <div className="saved-header" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+            <div className="saved-header" style={{ marginBottom: '2rem', textAlign: 'center', paddingTop: '3rem' }}>
               <h2 style={{ fontSize: '2.5rem', fontFamily: 'Outfit, sans-serif' }}>Your Saved Resumes</h2>
               <p className="subtitle">All resumes are securely auto-saved on this device.</p>
             </div>
