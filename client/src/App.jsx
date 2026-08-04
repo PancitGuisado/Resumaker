@@ -79,7 +79,7 @@ function App() {
     setError(null);
     try {
       const isNative = typeof window !== 'undefined' && window.Capacitor && window.Capacitor.isNative;
-      const API_URL = isNative ? 'https://resumakerai.vercel.app/api/generate' : '/api/generate';
+      const API_URL = isNative ? 'https://airesumaker.vercel.app/api/generate' : '/api/generate';
 
       const res = await fetch(API_URL, {
         method: 'POST',
@@ -141,7 +141,12 @@ function App() {
   }
 
   return (
-    <div className="app-container" style={{ display: 'block', height: '100vh', overflowY: 'auto' }}>
+    <div className="app-container" style={{ 
+      display: 'block', 
+      height: '100vh', 
+      overflowY: 'auto',
+      backgroundColor: currentView === 'wizard' || currentView === 'install' ? '#0f172a' : '#f8fafc'
+    }}>
       
       {isOffline && (
         <div className="offline-banner">
