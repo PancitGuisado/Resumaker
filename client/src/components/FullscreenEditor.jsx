@@ -4,6 +4,8 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { toPng, toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 import '../styles/editor.css';
 
 import Minimalist from '../templates/Minimalist';
@@ -20,9 +22,14 @@ const TEMPLATES = {
   corporate: Corporate
 };
 
+const isNativeApp = () => {
+  return window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && window.location.port === '');
+};
+
 export default function FullscreenEditor({ resumeData, templateId, onClose, onUpdateData }) {
   const [themeColor, setThemeColor] = useState('#2563eb');
-  const [fontSize, setFontSize] = useState(14); // default 14px
+  const [fontSize, setFontSize] = useState(14);
+  const [exportStatus, setExportStatus] = useState('');
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -33,11 +40,10 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
     const { active, over } = event;
     if (!over || active.id === over.id) return;
     
-    // Parse IDs (e.g. "experience-1")
     const [activeSection, activeIndexStr] = active.id.split('-');
     const [overSection, overIndexStr] = over.id.split('-');
     
-    if (activeSection !== overSection) return; // Can only reorder within same section
+    if (activeSection !== overSection) return;
     
     const activeIndex = parseInt(activeIndexStr, 10);
     const overIndex = parseInt(overIndexStr, 10);
@@ -54,31 +60,71 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
   const exportToPDF = async (elementId, filename) => {
     const element = document.getElementById(elementId);
     if (!element) return;
+    setExportStatus('Generating PDF...');
     try {
       const imgData = await toJpeg(element, { quality: 1.0, pixelRatio: 2 });
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      // Actually we should calculate height based on ratio, but standard A4 should be fine
       pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`${filename}.pdf`);
+
+      if (isNativeApp()) {
+        const pdfOutput = pdf.output('datauristring');
+        const base64Data = pdfOutput.split(',')[1];
+        const savedFile = await Filesystem.writeFile({
+          path: `${filename}_${Date.now()}.pdf`,
+          data: base64Data,
+          directory: Directory.Cache,
+        });
+        await Share.share({
+          title: `${filename}.pdf`,
+          url: savedFile.uri,
+          dialogTitle: 'Save or Share your Resume PDF',
+        });
+        setExportStatus('PDF ready!');
+      } else {
+        pdf.save(`${filename}.pdf`);
+        setExportStatus('PDF downloaded!');
+      }
     } catch (err) {
       console.error('Failed to export PDF:', err);
+      setExportStatus('Export failed. Try again.');
     }
+    setTimeout(() => setExportStatus(''), 3000);
   };
 
   const exportToImage = async (elementId, format = 'png', filename) => {
     const element = document.getElementById(elementId);
     if (!element) return;
+    setExportStatus('Generating image...');
     try {
       const dataUrl = await toPng(element, { pixelRatio: 2 });
-      const link = document.createElement('a');
-      link.download = `${filename}.${format}`;
-      link.href = dataUrl;
-      link.click();
+
+      if (isNativeApp()) {
+        const base64Data = dataUrl.split(',')[1];
+        const savedFile = await Filesystem.writeFile({
+          path: `${filename}_${Date.now()}.png`,
+          data: base64Data,
+          directory: Directory.Cache,
+        });
+        await Share.share({
+          title: `${filename}.png`,
+          url: savedFile.uri,
+          dialogTitle: 'Save or Share your Resume Image',
+        });
+        setExportStatus('Image ready!');
+      } else {
+        const link = document.createElement('a');
+        link.download = `${filename}.${format}`;
+        link.href = dataUrl;
+        link.click();
+        setExportStatus('Image downloaded!');
+      }
     } catch (err) {
       console.error('Failed to export image:', err);
+      setExportStatus('Export failed. Try again.');
     }
+    setTimeout(() => setExportStatus(''), 3000);
   };
 
   const TemplateComponent = TEMPLATES[templateId];
@@ -122,6 +168,9 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
           <button className="btn-export png" onClick={() => exportToImage('resume-document', 'png', 'Resume')}>
             <ImageIcon size={18} /> Download PNG
           </button>
+          {exportStatus && (
+            <p style={{ color: '#60a5fa', fontSize: '0.85rem', textAlign: 'center', marginTop: '0.5rem' }}>{exportStatus}</p>
+          )}
         </div>
       </div>
 
