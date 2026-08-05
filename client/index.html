@@ -11,6 +11,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // One-time cache purge (v2) - clears stale service workers from broken deployments
+      if ('serviceWorker' in navigator) {
+        var purgeKey = 'sw_purge_v2';
+        if (!localStorage.getItem(purgeKey)) {
+          caches.keys().then(function(names) {
+            names.forEach(function(name) { caches.delete(name); });
+          });
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            regs.forEach(function(reg) { reg.unregister(); });
+          });
+          localStorage.setItem(purgeKey, '1');
+          setTimeout(function() { location.reload(); }, 500);
+        }
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
