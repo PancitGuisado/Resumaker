@@ -1,4 +1,3 @@
-/* Base A4 Document Styling */
 .resume-document {
   width: 210mm;
   min-height: 297mm;
@@ -10,6 +9,7 @@
   font-family: 'Inter', sans-serif;
   position: relative;
   overflow: hidden;
+  font-size: var(--base-font-size, 14px);
 }
 
 /* Editor Specific Styles */
@@ -40,17 +40,17 @@
    ========================================= */
 .minimalist { padding: 20mm; line-height: 1.6; }
 .min-header { border-bottom: 2px solid var(--accent-color, #000); padding-bottom: 6mm; margin-bottom: 8mm; text-align: center; }
-.min-header h1 { font-size: 28pt; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2mm; color: var(--accent-color, #000); }
-.min-title { font-size: 14pt; color: #444; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3mm; }
-.min-contact { font-size: 10pt; color: #666; }
+.min-header h1 { font-size: 2.67em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2mm; color: var(--accent-color, #000); }
+.min-title { font-size: 1.33em; color: #444; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3mm; }
+.min-contact { font-size: 0.95em; color: #666; }
 .min-section { margin-bottom: 8mm; }
-.min-section h2 { font-size: 14pt; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 2mm; margin-bottom: 4mm; letter-spacing: 1px; color: var(--accent-color, #000); }
-.min-section p { font-size: 10pt; color: #333; }
+.min-section h2 { font-size: 1.33em; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 2mm; margin-bottom: 4mm; letter-spacing: 1px; color: var(--accent-color, #000); }
+.min-section p { font-size: 0.95em; color: #333; }
 .min-item { margin-bottom: 5mm; }
-.min-item-header { display: flex; justify-content: space-between; font-size: 11pt; margin-bottom: 1mm; }
-.min-company { font-size: 10pt; font-style: italic; color: #555; margin-bottom: 2mm; }
-.min-institution { font-size: 10pt; color: #555; }
-.min-item ul { padding-left: 5mm; font-size: 10pt; color: #444; }
+.min-item-header { display: flex; justify-content: space-between; font-size: 1.05em; margin-bottom: 1mm; }
+.min-company { font-size: 0.95em; font-style: italic; color: #555; margin-bottom: 2mm; }
+.min-institution { font-size: 0.95em; color: #555; }
+.min-item ul { padding-left: 5mm; font-size: 0.95em; color: #444; }
 .min-item li { margin-bottom: 1mm; }
 .min-skills { line-height: 1.8; }
 
@@ -60,21 +60,21 @@
 .creative { display: flex; }
 .cre-sidebar { width: 70mm; background-color: #2c3e50; color: white; padding: 15mm 10mm; min-height: 297mm; }
 .cre-main { flex: 1; padding: 15mm 15mm; background-color: #f9f9f9; }
-.cre-header h1 { font-size: 24pt; font-weight: 800; margin-bottom: 2mm; line-height: 1.2; }
-.cre-title { font-size: 12pt; color: var(--accent-color, #1abc9c); font-weight: 600; margin-bottom: 10mm; }
-.cre-contact { font-size: 10pt; margin-bottom: 15mm; line-height: 1.8; color: #bdc3c7; }
+.cre-header h1 { font-size: 2.29em; font-weight: 800; margin-bottom: 2mm; line-height: 1.2; }
+.cre-title { font-size: 1.14em; color: var(--accent-color, #1abc9c); font-weight: 600; margin-bottom: 10mm; }
+.cre-contact { font-size: 0.95em; margin-bottom: 15mm; line-height: 1.8; color: #bdc3c7; }
 .cre-section { margin-bottom: 10mm; }
 .cre-sidebar .cre-section h2 { color: white; border-bottom-color: #34495e; }
-.cre-section h2 { font-size: 16pt; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 2mm; margin-bottom: 5mm; font-weight: 700; }
-.cre-main p { font-size: 10pt; color: #555; line-height: 1.6; }
+.cre-section h2 { font-size: 1.52em; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 2mm; margin-bottom: 5mm; font-weight: 700; }
+.cre-main p { font-size: 0.95em; color: #555; line-height: 1.6; }
 .cre-skills { display: flex; flex-wrap: wrap; gap: 2mm; }
-.cre-skill-tag { background-color: #34495e; padding: 1.5mm 3mm; border-radius: 4px; font-size: 9pt; color: #ecf0f1; }
+.cre-skill-tag { background-color: #34495e; padding: 1.5mm 3mm; border-radius: 4px; font-size: 0.86em; color: #ecf0f1; }
 .cre-item { margin-bottom: 6mm; }
-.cre-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1mm; }
-.cre-item-header strong { font-size: 12pt; color: #2c3e50; }
-.cre-dates { font-size: 9.5pt; color: var(--accent-color, #1abc9c); font-weight: 600; }
-.cre-company { font-size: 10.5pt; color: #7f8c8d; font-weight: 500; margin-bottom: 2mm; }
-.cre-item ul { padding-left: 5mm; font-size: 10pt; color: #555; }
+.cre-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1mm; }
+.cre-item-header strong { font-size: 1.14em; color: #2c3e50; }
+.cre-dates { font-size: 0.90em; color: var(--accent-color, #1abc9c); font-weight: 600; }
+.cre-company { font-size: 1.00em; color: #7f8c8d; font-weight: 500; margin-bottom: 2mm; }
+.cre-item ul { padding-left: 5mm; font-size: 0.95em; color: #555; }
 .cre-item li { margin-bottom: 1.5mm; }
 
 /* =========================================
@@ -82,19 +82,19 @@
    ========================================= */
 .executive { padding: 20mm; }
 .exe-header { text-align: center; background-color: var(--accent-color, #1f2937); color: white; padding: 10mm; margin: -20mm -20mm 0 -20mm; }
-.exe-header h1 { font-size: 26pt; font-weight: 700; margin-bottom: 2mm; letter-spacing: 1px; }
-.exe-title { font-size: 14pt; color: #e5e7eb; font-weight: 500; }
-.exe-contact-bar { display: flex; justify-content: center; gap: 10mm; background-color: #f3f4f6; padding: 4mm; margin: 0 -20mm 10mm -20mm; font-size: 10pt; color: #4b5563; border-bottom: 1px solid #e5e7eb; }
+.exe-header h1 { font-size: 2.48em; font-weight: 700; margin-bottom: 2mm; letter-spacing: 1px; }
+.exe-title { font-size: 1.33em; color: #e5e7eb; font-weight: 500; }
+.exe-contact-bar { display: flex; justify-content: center; gap: 10mm; background-color: #f3f4f6; padding: 4mm; margin: 0 -20mm 10mm -20mm; font-size: 0.95em; color: #4b5563; border-bottom: 1px solid #e5e7eb; }
 .exe-body { padding-top: 5mm; }
 .exe-section { margin-bottom: 8mm; }
-.exe-section h2 { font-size: 14pt; color: var(--accent-color, #1f2937); border-bottom: 2px solid var(--accent-color, #1f2937); padding-bottom: 1.5mm; margin-bottom: 4mm; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-.exe-section p { font-size: 10.5pt; color: #374151; line-height: 1.6; }
+.exe-section h2 { font-size: 1.33em; color: var(--accent-color, #1f2937); border-bottom: 2px solid var(--accent-color, #1f2937); padding-bottom: 1.5mm; margin-bottom: 4mm; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.exe-section p { font-size: 1.00em; color: #374151; line-height: 1.6; }
 .exe-item { margin-bottom: 6mm; }
-.exe-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1mm; }
-.exe-item-header strong { font-size: 12pt; color: #111827; }
-.exe-dates { font-size: 10pt; color: #6b7280; font-style: italic; }
-.exe-role { font-size: 11pt; color: var(--accent-color, #374151); font-weight: 600; margin-bottom: 2mm; }
-.exe-item ul { padding-left: 5mm; font-size: 10.5pt; color: #4b5563; line-height: 1.5; }
+.exe-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1mm; }
+.exe-item-header strong { font-size: 1.14em; color: #111827; }
+.exe-dates { font-size: 0.95em; color: #6b7280; font-style: italic; }
+.exe-role { font-size: 1.05em; color: var(--accent-color, #374151); font-weight: 600; margin-bottom: 2mm; }
+.exe-item ul { padding-left: 5mm; font-size: 1.00em; color: #4b5563; line-height: 1.5; }
 .exe-item li { margin-bottom: 1mm; }
 .exe-skills { font-weight: 500; }
 
@@ -103,23 +103,23 @@
    ========================================= */
 .modern { padding: 0; }
 .mod-header { background-color: #f8fafc; padding: 15mm 20mm; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
-.mod-header-left h1 { font-size: 28pt; font-weight: 800; color: #0f172a; margin-bottom: 2mm; letter-spacing: -0.5px; }
-.mod-title { font-size: 14pt; color: var(--accent-color, #3b82f6); font-weight: 600; }
-.mod-header-right { text-align: right; font-size: 10pt; color: #475569; line-height: 1.6; }
+.mod-header-left h1 { font-size: 2.67em; font-weight: 800; color: #0f172a; margin-bottom: 2mm; letter-spacing: -0.5px; }
+.mod-title { font-size: 1.33em; color: var(--accent-color, #3b82f6); font-weight: 600; }
+.mod-header-right { text-align: right; font-size: 0.95em; color: #475569; line-height: 1.6; }
 .mod-content { padding: 15mm 20mm; }
 .mod-section { margin-bottom: 10mm; }
-.mod-section-title { font-size: 14pt; color: var(--accent-color, #0f172a); font-weight: 700; margin-bottom: 5mm; text-transform: uppercase; letter-spacing: 1px; }
-.mod-text { font-size: 10.5pt; color: #334155; line-height: 1.6; }
+.mod-section-title { font-size: 1.33em; color: var(--accent-color, #0f172a); font-weight: 700; margin-bottom: 5mm; text-transform: uppercase; letter-spacing: 1px; }
+.mod-text { font-size: 1.00em; color: #334155; line-height: 1.6; }
 .mod-item { margin-bottom: 6mm; }
-.mod-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1mm; }
-.mod-role { font-size: 12pt; color: #0f172a; font-weight: 700; }
-.mod-dates { font-size: 10pt; color: #64748b; }
-.mod-company { font-size: 11pt; color: var(--accent-color, #3b82f6); font-weight: 500; margin-bottom: 2mm; }
-.mod-list { padding-left: 5mm; font-size: 10.5pt; color: #475569; line-height: 1.5; }
+.mod-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1mm; }
+.mod-role { font-size: 1.14em; color: #0f172a; font-weight: 700; }
+.mod-dates { font-size: 0.95em; color: #64748b; }
+.mod-company { font-size: 1.05em; color: var(--accent-color, #3b82f6); font-weight: 500; margin-bottom: 2mm; }
+.mod-list { padding-left: 5mm; font-size: 1.00em; color: #475569; line-height: 1.5; }
 .mod-list li { margin-bottom: 1.5mm; }
 .mod-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
 .mod-skills-container { display: flex; flex-wrap: wrap; gap: 2mm; }
-.mod-skill-pill { background-color: var(--accent-color, #f1f5f9); color: #fff; padding: 1.5mm 3.5mm; border-radius: 20px; font-size: 9.5pt; font-weight: 500; }
+.mod-skill-pill { background-color: var(--accent-color, #f1f5f9); color: #fff; padding: 1.5mm 3.5mm; border-radius: 20px; font-size: 0.90em; font-weight: 500; }
 .mod-skill-pill.default-color { background-color: #f1f5f9; color: #334155; }
 
 /* =========================================
@@ -127,16 +127,16 @@
    ========================================= */
 .corporate { padding: 20mm; font-family: 'Times New Roman', Times, serif; }
 .corp-header { text-align: center; margin-bottom: 8mm; border-bottom: 1.5px solid var(--accent-color, #000); padding-bottom: 5mm; }
-.corp-header h1 { font-size: 26pt; font-weight: bold; margin-bottom: 2mm; color: var(--accent-color, #000); }
-.corp-contact { font-size: 10pt; color: #333; }
+.corp-header h1 { font-size: 2.48em; font-weight: bold; margin-bottom: 2mm; color: var(--accent-color, #000); }
+.corp-contact { font-size: 0.95em; color: #333; }
 .corp-content { color: #000; }
 .corp-section { margin-bottom: 8mm; }
-.corp-section-title { font-size: 12pt; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid var(--accent-color, #000); margin-bottom: 4mm; padding-bottom: 1mm; color: var(--accent-color, #000); }
-.corp-text { font-size: 10.5pt; line-height: 1.5; }
+.corp-section-title { font-size: 1.14em; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid var(--accent-color, #000); margin-bottom: 4mm; padding-bottom: 1mm; color: var(--accent-color, #000); }
+.corp-text { font-size: 1.00em; line-height: 1.5; }
 .corp-item { margin-bottom: 5mm; }
-.corp-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5mm; }
-.corp-company { font-size: 11.5pt; font-weight: bold; }
-.corp-dates { font-size: 10.5pt; }
-.corp-role { font-size: 11pt; font-style: italic; margin-bottom: 2mm; color: var(--accent-color, #000); }
-.corp-list { padding-left: 6mm; font-size: 10.5pt; line-height: 1.4; }
+.corp-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5mm; }
+.corp-company { font-size: 1.10em; font-weight: bold; }
+.corp-dates { font-size: 1.00em; }
+.corp-role { font-size: 1.05em; font-style: italic; margin-bottom: 2mm; color: var(--accent-color, #000); }
+.corp-list { padding-left: 6mm; font-size: 1.00em; line-height: 1.4; }
 .corp-list li { margin-bottom: 1mm; }

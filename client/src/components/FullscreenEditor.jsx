@@ -69,19 +69,26 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
       pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
 
       if (isNativeApp()) {
+        const { Toast } = await import('@capacitor/toast');
         const pdfOutput = pdf.output('datauristring');
         const base64Data = pdfOutput.split(',')[1];
         const savedFile = await Filesystem.writeFile({
           path: `${filename}_${Date.now()}.pdf`,
           data: base64Data,
-          directory: Directory.Cache,
+          directory: Directory.Documents,
         });
+        
+        await Toast.show({
+          text: `Saved PDF to Documents folder!`,
+          duration: 'long'
+        });
+
         await Share.share({
           title: `${filename}.pdf`,
           url: savedFile.uri,
-          dialogTitle: 'Save or Share your Resume PDF',
+          dialogTitle: 'Share your Resume PDF',
         });
-        setExportStatus('PDF ready!');
+        setExportStatus('PDF saved to Documents!');
       } else {
         pdf.save(`${filename}.pdf`);
         setExportStatus('PDF downloaded!');
@@ -101,18 +108,25 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
       const dataUrl = await toPng(element, { pixelRatio: 2 });
 
       if (isNativeApp()) {
+        const { Toast } = await import('@capacitor/toast');
         const base64Data = dataUrl.split(',')[1];
         const savedFile = await Filesystem.writeFile({
           path: `${filename}_${Date.now()}.png`,
           data: base64Data,
-          directory: Directory.Cache,
+          directory: Directory.Documents,
         });
+        
+        await Toast.show({
+          text: `Saved Image to Documents folder!`,
+          duration: 'long'
+        });
+
         await Share.share({
           title: `${filename}.png`,
           url: savedFile.uri,
-          dialogTitle: 'Save or Share your Resume Image',
+          dialogTitle: 'Share your Resume Image',
         });
-        setExportStatus('Image ready!');
+        setExportStatus('Image saved to Documents!');
       } else {
         const link = document.createElement('a');
         link.download = `${filename}.${format}`;
@@ -180,7 +194,10 @@ export default function FullscreenEditor({ resumeData, templateId, onClose, onUp
             <div 
               id="resume-document"
               className="resume-document"
-              style={{ '--base-font-size': `${fontSize}px` }}
+              style={{ 
+                '--base-font-size': `${fontSize}px`,
+                '--accent-color': themeColor 
+              }}
             >
               <TemplateComponent 
                 data={resumeData} 
